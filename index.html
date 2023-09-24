@@ -37,6 +37,9 @@
         <button class="btn btn-primary" type="button" onclick="searchData()">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
+        <button class="btn btn-secondary" type="button" onclick="geoPosition()">
+          <i class="fa-solid fa-location-crosshairs"></i>
+        </button>
       </div>
       <ul class="nav nav-pills flex-column mt-auto mb-auto" id="snav">
         <li class="nav-item">
@@ -80,6 +83,9 @@
         />
         <button class="btn btn-primary" type="button" onclick="searchMData()">
           <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button class="btn btn-secondary" type="button" onclick="geoPosition()">
+          <i class="fa-solid fa-location-crosshairs"></i>
         </button>
       </div>
     </div>
@@ -202,19 +208,7 @@
         `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=b41ec3be35c7dac8aabbc21ba253137a`
       )
         .then((data) => data.json())
-        .then((data) => displayData(data))
-
-        .catch((error) => {
-          searchAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="fa-solid fa-circle-exclamation"></i> Enter A valid location!!!
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
-      </div>`;
-        });
+        .then((data) => displayData(data));
 
       displayData = (data) => {
         tempresult.innerHTML = (data.main.temp - 273.15).toFixed(2);
@@ -244,6 +238,51 @@
           conthome.classList.add("bg-night-secondary");
         }
       };
+    };
+
+    geoPosition = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(posFinding);
+      } else {
+        x.innerHTML = "GPS is not supported by this browser.";
+      }
+
+      function posFinding(position) {
+        fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=b41ec3be35c7dac8aabbc21ba253137a`
+        )
+          .then((data) => data.json())
+          .then((data) => displayData(data));
+
+        displayData = (data) => {
+          tempresult.innerHTML = (data.main.temp - 273.15).toFixed(2);
+          humdresult.innerHTML = data.main.humidity;
+          speedWind.innerHTML = data.wind.speed;
+          placeName.innerHTML = data.name;
+          cV.innerHTML = data.coord.lon;
+          cH.innerHTML = data.coord.lat;
+          presult.innerHTML = data.main.pressure;
+          hum.innerHTML = data.main.humidity;
+          ws.innerHTML = data.wind.speed;
+          wd.innerHTML = data.wind.deg;
+          timeRes.innerHTML = new Date(data.dt * 1000 + data.timezone * 1000);
+          weatherIcon = data.weather[0].icon;
+          weatherDetresult.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" ><br><span class="fw-bold fs-4">${data.weather[0].main}</span>`;
+          if (weatherIcon.charAt(weatherIcon.length - 1) == "d") {
+            Home.classList.remove("bg-secondary-alt");
+            Home.classList.remove("bg-nightImg");
+            conthome.classList.remove("bg-night-secondary");
+            Home.classList.add("bg-dayImg");
+            conthome.classList.add("bg-day-secondary");
+          } else if (weatherIcon.charAt(weatherIcon.length - 1) == "n") {
+            Home.classList.remove("bg-secondary-alt");
+            Home.classList.remove("bg-dayImg");
+            conthome.classList.remove("bg-day-secondary");
+            Home.classList.add("bg-nightImg");
+            conthome.classList.add("bg-night-secondary");
+          }
+        };
+      }
     };
 
     searchMData = () => {

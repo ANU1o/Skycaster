@@ -172,6 +172,17 @@ hr{
 	color: var(--secondaryMain);
 }
 
+.btn-secondary {
+	background-color: var(--secondaryMainAlt2);
+	color: var(--primaryMainAlt);
+	border: none;
+}
+
+.btn-secondary:is(:hover, :focus) {
+	background-color: var(--secondaryMain);
+	color: var(--primaryMain);
+}
+
 /* Custom */
 
 .by{
