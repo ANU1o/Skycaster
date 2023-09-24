@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#444054" />
+    <meta property="og.title" content="Skycaster" />
+    <meta property="og:description" content="Made by Anoof Abdul Kadar" />
+    <title>Skycaster</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/38647df40d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="user-select-none">
+    <aside class="py-5 d-lg-grid">
+      <ul class="nav nav-pills flex-column mb-auto" id="snav">
+        <li class="nav-item">
+          <a href="#Home" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="#Precipitation" class="nav-link">Precipitation</a>
+        </li>
+        <li class="nav-item"><a href="#Wind" class="nav-link">Wind</a></li>
+      </ul>
+      <div class="mt-auto">
+        <h4 class="text-center text-primary-alt">
+          <i class="fa-solid fa-rainbow text-main fa-3x"></i><br />Skycaster
+        </h4>
+        <p class="text-primary text-center by">Made by Anoof Abdul Kadar</p>
+      </div>
+    </aside>
+
+    <nav class="d-lg-none d-sm-block fixed-bottom navbar bg-secondary-alt">
+      <ul class="nav me-5">
+        <li class="nav-item">
+          <a href="#Precipitation" class="nav-link">Precipitation</a>
+        </li>
+      </ul>
+      <a href="#Home" class="btn btn-primary btn-lg home shadow-lg" title="Home"
+        ><i class="fa-solid fa-rainbow"></i
+      ></a>
+      <ul class="nav ms-auto">
+        <li class="nav-item"><a href="#Wind" class="nav-link">Wind</a></li>
+      </ul>
+    </nav>
+
+    <main data-bs-spy="scroll" data-bs-target="#snav">
+      <div
+        id="Home"
+        class="bg-dayImg d-flex justify-content-center align-items-center rounded p-3 mb-3"
+        style="height: 90vh"
+      >
+        <div class="bg-day-secondary rounded p-5">
+          <div class="row align-items-center">
+            <div class="col-12 mb-5 text-center">
+              <i class="fa-solid fa-cloud text-light fa-5x"></i>
+            </div>
+            <div class="col-lg col-sm-12 mb-3">
+              <h2 class="text-day text-center">
+                <i class="fa-solid fa-temperature-half"></i>
+                <span id="tempresult"></span>°C
+              </h2>
+            </div>
+            <div class="col-lg col-sm-12 mb-3">
+              <h2 class="text-day text-center">
+                <i class="fa-solid fa-droplet"></i>
+                <span id="humdresult">00</span>%
+              </h2>
+            </div>
+            <div class="col-lg col-sm-12 mb-3">
+              <h2 class="text-day text-center">
+                <i class="fa-solid fa-wind"></i>
+                <span id="speedWind"></span> km/h
+              </h2>
+            </div>
+            <div class="col-12">
+              <small class="d-block text-center text-day"
+                ><i class="fa-solid fa-globe"></i><br /><span
+                  class="text-light fw-bold"
+                  id="place"
+                ></span
+                ><br />[<span id="cV"></span> <span id="cH"></span>]
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="Precipitation" class="bg-secondary-alt mb-3 rounded p-3">
+        <h1 class="display-4 text-center text-uppercase my-5">Precipitation</h1>
+        <div class="row gap-2">
+          <div class="col-lg col-sm-12">
+            <div class="bg-secondary-alt-2 rounded p-5">
+              <h5 class="text-center">
+                <i class="fa-solid fa-smog"></i> Pressure
+              </h5>
+              <h2 class="text-center text-main display-1">
+                <span id="presult"></span> mbar
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg col-sm-12">
+            <div class="bg-secondary-alt-2 rounded p-5">
+              <h5 class="text-center">
+                <i class="fa-solid fa-droplet"></i> Humidity
+              </h5>
+              <h2 class="text-center text-main display-1">
+                <span id="hum"></span>%
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Wind" class="bg-secondary-alt mb-3 rounded p-3">
+        <h1 class="display-4 text-center text-uppercase my-5">Wind</h1>
+        <div class="row gap-2">
+          <div class="col-lg col-sm-12">
+            <div class="bg-secondary-alt-2 rounded p-5">
+              <h5 class="text-center">
+                <i class="fa-solid fa-gauge"></i> Speed
+              </h5>
+              <h2 class="text-center text-main display-1">
+                <span id="ws"></span> km/h
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg col-sm-12">
+            <div class="bg-secondary-alt-2 rounded p-5">
+              <h5 class="text-center">
+                <i class="fa-solid fa-compass"></i> Direction
+              </h5>
+              <h2 class="text-center text-main display-1">
+                <span id="wd">°</span>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-sm-block d-lg-none">
+        <hr />
+        <h4 class="text-center text-secondary-alt">
+          <i class="fa-solid fa-rainbow fa-3x"></i><br />Skycaster
+        </h4>
+        <p class="text-secondary-alt text-center by">
+          Made by Anoof Abdul Kadar
+        </p>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  <script>
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=thrissur&appid=b41ec3be35c7dac8aabbc21ba253137a`
+    )
+      .then((data) => data.json())
+      .then((outdata) => displayData(outdata));
+
+    displayData = (data) => {
+      tempK = data.main.temp;
+
+      tempC = tempK - 273.15;
+      location = data.name;
+      cordV = data.coord.lon;
+      cordH = data.coord.lat;
+      humidity = data.main.humidity;
+      windSpeed = data.wind.speed;
+      pressure = data.main.pressure;
+      windDirection = data.wind.deg;
+
+      tempresult.innerHTML = tempC;
+      humdresult.innerHTML = humidity;
+      speedWind.innerHTML = windSpeed;
+      place.innerHTML = location;
+      cV.innerHTML = cordV;
+      cH.innerHTML = cordH;
+      presult.innerHTML = pressure;
+      hum.innerHTML = humidity;
+      ws.innerHTML = windSpeed;
+      ws.innerHTML = windDirection;
+    };
+  </script>
+</html>

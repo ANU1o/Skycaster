@@ -1,0 +1,225 @@
+
+
+/* *{
+	outline: red solid;
+} */
+
+:root{
+
+	--primaryMain: #FAC9B8;
+	--secondaryMain: #2F243A;
+	--primaryMainAlt:#DB8A74;
+	--secondaryMainAlt:#444054;
+	--secondaryMainAlt2: #555167;
+	--textMain:#D4F2D2;
+
+	/* Shades of Night */
+	--bgNight: #6982a2;
+	--primaryNight:#f0f0f0;
+	--secondaryNight:#1B2845;
+
+	
+	/* Shades of Day */
+	--bgDay:#78C3FB;
+	--primaryDay: #FFC145;
+	--secondaryDay: #172A3A;
+
+}
+
+::-webkit-scrollbar{
+	width: 0.75em;
+}
+
+::-webkit-scrollbar-track{
+	background-color: var(--secondaryMain);
+}
+
+::-webkit-scrollbar-thumb{
+	background-color: var(--secondaryMainAlt);
+	border-radius: 0.25em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--primaryMain);
+}
+
+body{
+	background-color: var(--secondaryMain);
+	display: grid;
+	grid-template:"aside main main";
+	
+	
+}
+
+aside{
+	background-color: var(--secondaryMainAlt);
+	height: 100vh;
+	grid-area: aside;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	position: sticky;
+	top: 0;
+}
+
+main{
+	display: block;
+	padding: 2em;
+	width: auto;
+	grid-area: main;
+}
+
+@media (max-width:400px) {
+	aside{
+		display: none;
+	}
+
+	main{
+		padding-bottom: 4em;
+	}
+
+	.home{
+		margin-top:-10%;
+	}
+}
+
+.nav-item .nav-link{
+	color: var(--textMain);
+}
+
+.nav-pills .nav-item .nav-link.active{
+	background-color: var(--primaryMain);
+	color: var(--secondaryMainAlt);
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: var(--primaryMain);
+}
+
+p{
+	color: var(--textMain);
+}
+
+hr{
+	color: var(--secondaryMainAlt);
+}
+
+.text-primary{
+	color:var(--primaryMain) !important ;
+}
+
+.text-secondary{
+	color:var(--secondaryMain)! important;
+}
+
+.text-primary-alt {
+	color: var(--primaryMainAlt) !important;
+}
+
+.text-secondary-alt {
+	color: var(--secondaryMainAlt) ! important;
+}
+
+.text-main{
+	color: var(--textMain);
+}
+
+/* Background */
+
+.bg-primary {
+	background-color: var(--primaryMain) !important;
+}
+
+.bg-secondary {
+	background-color: var(--secondaryMain) ! important;
+}
+
+.bg-primary-alt {
+	background-color: var(--primaryMainAlt) !important;
+}
+
+.bg-secondary-alt {
+	background-color: var(--secondaryMainAlt) ! important;
+}
+
+.bg-secondary-alt-2 {
+	background-color: var(--secondaryMainAlt2) ! important;
+}
+
+.btn-primary{
+	background-color: var(--primaryMain);
+	color:var(--secondaryMainAlt);
+	border:none;
+}
+
+.btn-primary:is(:hover,:focus) {
+	background-color: var(--primaryMainAlt);
+	color: var(--secondaryMain);
+}
+
+/* Custom */
+
+.by{
+	font-size: x-small;
+}
+
+/* Day Components */
+
+.bg-dayImg {
+	background: url(../images/backgrounds/daybg.jpg) no-repeat fixed center, var(--bgDay);
+	background-blend-mode: luminosity;
+}
+
+.bg-day{
+	background-color: var(--bgDay);
+}
+
+.bg-day-primary{
+	background-color: var(--primaryDay); 
+}
+
+.bg-day-secondary{
+	background-color: var(--secondaryDay);
+}
+
+.text-day{
+	color: var(--bgDay);
+}
+
+.text-day-primary{
+	color: var(--primaryDay);
+}
+
+.text-day-secondary{
+	color:var(--secondaryDay);
+}
+
+/* Night Components */
+
+.bg-nightImg {
+	background: url(../images/backgrounds/nightbg.jpg) no-repeat fixed center, var(--bgNight);
+	background-blend-mode:multiply;
+}
+
+.bg-night {
+	background-color: var(--bgNight);
+}
+
+.bg-night-primary {
+	background-color: var(--primaryNight);
+}
+
+.bg-night-secondary {
+	background-color: var(--secondaryNight);
+}
+
+.text-night {
+	color: var(--bgNight);
+}
+
+.text-night-primary {
+	color: var(--primaryNight);
+}
+
+.text-night-secondary {
+	color: var(--secondaryNight);
+}
