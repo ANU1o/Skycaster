@@ -119,7 +119,8 @@
               <small class="d-block text-center text-day"
                 ><i class="fa-solid fa-globe"></i><br />
                 <span class="text-light fw-bold" id="placeName">none</span
-                ><br />[<span id="cV">0</span>, <span id="cH">0</span>]
+                ><br />[<span id="cV">0</span>, <span id="cH">0</span>] <br />
+                <span id="timeRes"></span>
               </small>
             </div>
           </div>
@@ -226,6 +227,7 @@
         hum.innerHTML = data.main.humidity;
         ws.innerHTML = data.wind.speed;
         wd.innerHTML = data.wind.deg;
+        timeRes.innerHTML = new Date(data.dt * 1000 + data.timezone * 1000);
         weatherIcon = data.weather[0].icon;
         weatherDetresult.innerHTML = `<img src="https://openweathermap.org/img/wn/${weatherIcon}@2x.png" ><br><span class="fw-bold fs-4">${data.weather[0].main}</span>`;
         if (weatherIcon.charAt(weatherIcon.length - 1) == "d") {
@@ -263,6 +265,7 @@
         hum.innerHTML = data.main.humidity;
         ws.innerHTML = data.wind.speed;
         wd.innerHTML = data.wind.deg;
+        timeRes.innerHTML = new Date(data.dt * 1000 + data.timezone * 1000);
         weatherDetresult.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" ><br><span class="fw-bold fs-4">${data.weather[0].main}</span>`;
         if (weatherIcon.charAt(weatherIcon.length - 1) == "d") {
           Home.classList.remove("bg-secondary-alt");
