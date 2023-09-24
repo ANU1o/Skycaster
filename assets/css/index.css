@@ -82,6 +82,22 @@ main{
 	}
 }
 
+.form-control{
+	background-color: var(--secondaryMainAlt2);
+	color: var(--textMain);
+	border: none;
+}
+
+.form-control:focus{
+	color:var(--textMain);
+	background-color: var(--secondaryMain);
+	border: none;
+}
+
+.form-control::placeholder{
+	color:var(--primaryMainAlt)
+}
+
 .nav-item .nav-link{
 	color: var(--textMain);
 }

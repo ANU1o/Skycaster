@@ -21,7 +21,19 @@
   </head>
   <body class="user-select-none">
     <aside class="py-5 d-lg-grid">
-      <ul class="nav nav-pills flex-column mb-auto" id="snav">
+      <div class="input-group h-25 mb-auto">
+        <input
+          type="text"
+          name="pname"
+          id="pname"
+          placeholder="Enter Location Name"
+          class="form-control"
+        />
+        <button class="btn btn-primary" type="button" onclick="searchData()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <ul class="nav nav-pills flex-column mt-auto mb-auto" id="snav">
         <li class="nav-item">
           <a href="#Home" class="nav-link">Home</a>
         </li>
@@ -52,6 +64,23 @@
       </ul>
     </nav>
 
+    <div class="fixed-top d-lg-none d-sm-block m-3">
+      <div class="input-group">
+        <input
+          type="text"
+          name="pmname"
+          id="pmname"
+          placeholder="Enter Location Name"
+          class="form-control"
+        />
+        <button class="btn btn-primary" type="button" onclick="searchMData()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="m-5 fixed-bottom" id="searchAlert"></div>
+
     <main data-bs-spy="scroll" data-bs-target="#snav">
       <div
         id="Home"
@@ -66,28 +95,26 @@
             <div class="col-lg col-sm-12 mb-3">
               <h2 class="text-day text-center">
                 <i class="fa-solid fa-temperature-half"></i>
-                <span id="tempresult"></span>°C
+                <span id="tempresult">0</span>°C
               </h2>
             </div>
             <div class="col-lg col-sm-12 mb-3">
               <h2 class="text-day text-center">
                 <i class="fa-solid fa-droplet"></i>
-                <span id="humdresult">00</span>%
+                <span id="humdresult">0</span>%
               </h2>
             </div>
             <div class="col-lg col-sm-12 mb-3">
               <h2 class="text-day text-center">
                 <i class="fa-solid fa-wind"></i>
-                <span id="speedWind"></span> km/h
+                <span id="speedWind">0</span> km/h
               </h2>
             </div>
             <div class="col-12">
               <small class="d-block text-center text-day"
-                ><i class="fa-solid fa-globe"></i><br /><span
-                  class="text-light fw-bold"
-                  id="place"
-                ></span
-                ><br />[<span id="cV"></span> <span id="cH"></span>]
+                ><i class="fa-solid fa-globe"></i><br />
+                <span class="text-light fw-bold" id="placeName">none</span
+                ><br />[<span id="cV">0</span> <span id="cH">0</span>]
               </small>
             </div>
           </div>
@@ -103,7 +130,7 @@
                 <i class="fa-solid fa-smog"></i> Pressure
               </h5>
               <h2 class="text-center text-main display-1">
-                <span id="presult"></span> mbar
+                <span id="presult">0</span> mbar
               </h2>
             </div>
           </div>
@@ -113,7 +140,7 @@
                 <i class="fa-solid fa-droplet"></i> Humidity
               </h5>
               <h2 class="text-center text-main display-1">
-                <span id="hum"></span>%
+                <span id="hum">0</span>%
               </h2>
             </div>
           </div>
@@ -128,7 +155,7 @@
                 <i class="fa-solid fa-gauge"></i> Speed
               </h5>
               <h2 class="text-center text-main display-1">
-                <span id="ws"></span> km/h
+                <span id="ws">0</span> km/h
               </h2>
             </div>
           </div>
@@ -138,7 +165,7 @@
                 <i class="fa-solid fa-compass"></i> Direction
               </h5>
               <h2 class="text-center text-main display-1">
-                <span id="wd">°</span>
+                <span id="wd">0</span>°
               </h2>
             </div>
           </div>
@@ -162,34 +189,72 @@
     ></script>
   </body>
   <script>
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=thrissur&appid=b41ec3be35c7dac8aabbc21ba253137a`
-    )
-      .then((data) => data.json())
-      .then((outdata) => displayData(outdata));
+    searchData = () => {
+      place = pname.value;
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=b41ec3be35c7dac8aabbc21ba253137a`
+      )
+        .then((data) => data.json())
+        .then((data) => displayData(data))
 
-    displayData = (data) => {
-      tempK = data.main.temp;
+        .catch((error) => {
+          searchAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-exclamation"></i> Enter A valid location!!!
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>`;
+        });
 
-      tempC = tempK - 273.15;
-      location = data.name;
-      cordV = data.coord.lon;
-      cordH = data.coord.lat;
-      humidity = data.main.humidity;
-      windSpeed = data.wind.speed;
-      pressure = data.main.pressure;
-      windDirection = data.wind.deg;
+      displayData = (data) => {
+        tempresult.innerHTML = (data.main.temp - 273.15).toFixed(2);
+        humdresult.innerHTML = data.main.humidity;
+        speedWind.innerHTML = data.wind.speed;
+        placeName.innerHTML = data.name;
+        cV.innerHTML = data.coord.lon;
+        cH.innerHTML = data.coord.lat;
+        presult.innerHTML = data.main.pressure;
+        hum.innerHTML = data.main.humidity;
+        ws.innerHTML = data.wind.speed;
+        wd.innerHTML = data.wind.deg;
+      };
+    };
 
-      tempresult.innerHTML = tempC;
-      humdresult.innerHTML = humidity;
-      speedWind.innerHTML = windSpeed;
-      place.innerHTML = location;
-      cV.innerHTML = cordV;
-      cH.innerHTML = cordH;
-      presult.innerHTML = pressure;
-      hum.innerHTML = humidity;
-      ws.innerHTML = windSpeed;
-      ws.innerHTML = windDirection;
+    searchMData = () => {
+      place = pmname.value;
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=b41ec3be35c7dac8aabbc21ba253137a`
+      )
+        .then((data) => data.json())
+        .then((data) => displayData(data))
+
+        .catch((error) => {
+          searchAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-exclamation"></i> Enter A valid location!!!
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>`;
+        });
+
+      displayData = (data) => {
+        tempresult.innerHTML = (data.main.temp - 273.15).toFixed(2);
+        humdresult.innerHTML = data.main.humidity;
+        speedWind.innerHTML = data.wind.speed;
+        placeName.innerHTML = data.name;
+        cV.innerHTML = data.coord.lon;
+        cH.innerHTML = data.coord.lat;
+        presult.innerHTML = data.main.pressure;
+        hum.innerHTML = data.main.humidity;
+        ws.innerHTML = data.wind.speed;
+        wd.innerHTML = data.wind.deg;
+      };
     };
   </script>
 </html>
