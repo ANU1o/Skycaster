@@ -245,19 +245,7 @@
         `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=b41ec3be35c7dac8aabbc21ba253137a`
       )
         .then((data) => data.json())
-        .then((data) => displayData(data))
-
-        .catch((error) => {
-          searchAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <i class="fa-solid fa-circle-exclamation"></i> Enter A valid location!!!
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        ></button>
-      </div>`;
-        });
+        .then((data) => displayData(data));
 
       displayData = (data) => {
         tempresult.innerHTML = (data.main.temp - 273.15).toFixed(2);
