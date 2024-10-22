@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#444054" />
+    <meta property="og.title" content="Skycaster" />
+    <meta property="og:description" content="Made by Anoof Abdul Kadar" />
+    <meta
+      property="og:image"
+      content="https://i.postimg.cc/V6T8P2sV/skycast.png"
+    />
+    <title>Skycaster</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/images/Skycaster.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/38647df40d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body theme-mode="light" onload="setTheme()">
+    <aside>
+      <div id="search-container">
+        <input type="text" id="pname" placeholder="Search" />
+        <button id="search" onclick="searchData()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <button onclick="geoPosition()">
+          <i class="fa-solid fa-location"></i>
+        </button>
+      </div>
+      <hr />
+      <nav>
+        <a onclick="toTop()"
+          ><i class="fa-solid fa-home"></i><span>Home</span></a
+        >
+        <a href="#precipitation"
+          ><i class="fa-solid fa-water"></i><span>Precipitation</span></a
+        >
+        <a href="#wind"><i class="fa-solid fa-wind"></i><span>Wind</span></a>
+      </nav>
+      <hr id="bottom-divider" />
+      <div id="logo-container">
+        <i class="fa-solid fa-rainbow fa-4x"></i>
+        <span id="heading">Skycaster</span>
+        <span
+          >by <a href="https://anu1o.netlify.app" id="author">ANU1o</a></span
+        >
+      </div>
+    </aside>
+    <main>
+      <div id="home">
+        <div id="content">
+          <i class="fa-solid fa-map-location-dot fa-10x"></i>
+          <span id="title">No Location Selected</span>
+          <span id="message">Search and know what's happening outside </span>
+        </div>
+      </div>
+      <section id="precipitation">
+        <h1>Precipitation</h1>
+        <div class="container">
+          <div class="card">
+            <span class="card-heading">Pressure</span>
+            <div class="value">
+              <span class="measure" id="presult">0</span>
+              <span class="unit">mbar</span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-heading">Humidity</span>
+            <div class="value">
+              <span class="measure" id="hum">0%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="wind">
+        <h1>Wind</h1>
+        <div class="container">
+          <div class="card">
+            <span class="card-heading">Speed</span>
+            <div class="value">
+              <span class="measure" id="ws">0</span>
+              <span class="unit">km/h</span>
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-heading">Direction</span>
+            <div class="value">
+              <span class="measure"><span id="wd">0</span>°</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <button id="darkLight" onclick="toggleDarkLight()">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </body>
+  <script type="text/javascript" src="./index.js"></script>
+</html>
